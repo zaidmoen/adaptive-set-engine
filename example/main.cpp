@@ -2,10 +2,10 @@
 
 #include "adaptive_set.h"
 
-void printSet(const AdaptiveSet& numbers) {
+void printSet(const adaptive::AdaptiveSet& numbers) {
     std::cout << "{ ";
 
-    for (int number : numbers.getItems()) {
+    for (int number : numbers.values()) {
         std::cout << number << " ";
     }
 
@@ -13,18 +13,20 @@ void printSet(const AdaptiveSet& numbers) {
 }
 
 int main() {
-    AdaptiveSet firstSet;
+    adaptive::AdaptiveSet firstSet;
+    firstSet.add(6);
     firstSet.add(2);
     firstSet.add(4);
-    firstSet.add(6);
+    firstSet.add(4);
 
-    AdaptiveSet secondSet;
+    adaptive::AdaptiveSet secondSet;
     secondSet.add(4);
     secondSet.add(6);
     secondSet.add(8);
 
-    AdaptiveSet commonNumbers = firstSet.intersection(secondSet);
-    AdaptiveSet allNumbers = firstSet.setUnion(secondSet);
+    adaptive::AdaptiveSet commonNumbers = firstSet.intersection(secondSet);
+    adaptive::AdaptiveSet allNumbers = firstSet.setUnion(secondSet);
+    adaptive::AdaptiveSet onlyFirstSet = firstSet.difference(secondSet);
 
     std::cout << "First set: ";
     printSet(firstSet);
@@ -37,6 +39,9 @@ int main() {
 
     std::cout << "Union: ";
     printSet(allNumbers);
+
+    std::cout << "Only in first set: ";
+    printSet(onlyFirstSet);
 
     return 0;
 }
