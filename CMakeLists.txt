@@ -10,3 +10,11 @@ target_include_directories(adaptive_set PUBLIC include)
 
 add_executable(adaptive_set_example example/main.cpp)
 target_link_libraries(adaptive_set_example PRIVATE adaptive_set)
+
+include(CTest)
+
+if(BUILD_TESTING)
+    add_executable(adaptive_set_test tests/adaptive_set_test.cpp)
+    target_link_libraries(adaptive_set_test PRIVATE adaptive_set)
+    add_test(NAME adaptive_set_test COMMAND adaptive_set_test)
+endif()
